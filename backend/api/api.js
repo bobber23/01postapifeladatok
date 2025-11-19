@@ -41,4 +41,23 @@ router.get('/testsql', async (request, response) => {
     }
 });
 
+//?POST /api/sendMessage
+let feladatArray = [];
+router.post('/sendMessage', (request, response) => {
+    try {
+        const sender = request.body.sender;
+        const message = request.body.message;
+
+        feladatArray.push({ sender: sender, message: message });
+        console.log(feladatArray);
+        response.status(200).json({
+            message: 'Üzenet fogadva.'
+        });
+    } catch (error) {
+        response.status(500).json({
+            message: 'Ez a végpont nem működik.'
+        });
+    }
+});
+
 module.exports = router;
