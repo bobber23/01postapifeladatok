@@ -6,6 +6,7 @@ const fs = require('fs/promises');
 //!Multer
 const multer = require('multer'); //?npm install multer
 const path = require('path');
+const { request } = require('http');
 
 const storage = multer.diskStorage({
     destination: (request, file, callback) => {
@@ -52,6 +53,24 @@ router.post('/sendMessage', (request, response) => {
         console.log(feladatArray);
         response.status(200).json({
             message: 'Üzenet fogadva.'
+        });
+    } catch (error) {
+        response.status(500).json({
+            message: 'Ez a végpont nem működik.'
+        });
+    }
+});
+
+//?POST /api/saveData
+let nevnapArray = [];
+router.post('/saveData', (request, response) => {
+    try {
+        const inputData = request.body;
+
+        nevnapArray.push(inputData);
+        console.log(nevnapArray);
+        response.status(200).json({
+            message: 'Sikeres mentés'
         });
     } catch (error) {
         response.status(500).json({
