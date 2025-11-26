@@ -113,5 +113,23 @@ router.post('/names', (request, response) => {
     }
 });
 
+//?POST /api/vote
+
+router.post('/vote', (request, response) => {
+    try {
+        const option1 = request.body;
+        const option2 = request.body;
+        
+        response.status(200).json({
+            option1: option1,
+            option2: option2
+        });
+    } catch (error) {
+        response.status(500).json({
+            message: 'Ez a végpont nem működik.'
+        });
+    }
+});
+
 
 module.exports = router;
