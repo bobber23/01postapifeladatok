@@ -79,4 +79,39 @@ router.post('/saveData', (request, response) => {
     }
 });
 
+//?GET/POST /api/names
+let namesArray = [];
+router.get('/names', (request, response) => {
+    try {
+        const names = request.body;
+
+        response.status(200).json({
+            message: 'Adat sikeresen elmentve',
+            name: namesArray
+        });
+    } catch (error) {
+        response.status(500).json({
+            message: 'Ez a végpont nem működik.'
+        });
+    }
+});
+
+router.post('/names', (request, response) => {
+    try {
+        const names = request.body;
+        
+        namesArray.push(names);
+
+        response.status(200).json({
+            message: 'Adat sikeresen elmentve',
+            name: namesArray
+        });
+    } catch (error) {
+        response.status(500).json({
+            message: 'Ez a végpont nem működik.'
+        });
+    }
+});
+
+
 module.exports = router;
