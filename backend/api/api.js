@@ -114,15 +114,12 @@ router.post('/names', (request, response) => {
 });
 
 //?POST /api/vote
-
+let vote = [{option1: 0, option2: 0}];
 router.post('/vote', (request, response) => {
     try {
-        const option1 = request.body;
-        const option2 = request.body;
-        
         response.status(200).json({
-            option1: option1,
-            option2: option2
+            option1: vote[0].option1,
+            option2: vote[0].option2
         });
     } catch (error) {
         response.status(500).json({
